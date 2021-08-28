@@ -15,13 +15,13 @@ jupyter:
   markdown:
     extensions: footnotes
   rise:
+    autolaunch: true
     enable_chalkboard: true
-    header: <a href="#/0-0 "> <h3> Stats 507 - The Python Ecosystem </a>
+    header: <a href="#slide-0-0 "> <h3> Stats 507 - The Python Ecosystem </a>
     progress: true
     scroll: true
     theme: solarized
     transition: convex
-    autolaunch: true
 ---
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -29,7 +29,7 @@ jupyter:
 *Stats 507, Fall 2021*
 
 James Henderson, PhD  
-August 28, 2021
+August 31, 2021
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -57,7 +57,7 @@ August 28, 2021
      Jupyter, and Pandas.  
 <!-- #endregion -->
 
-<!-- #region {"slideshow": {"slide_type": "slide"}} -->
+<!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # Anaconda
  <center> 
    <img src="https://assets-cdn.anaconda.com/assets/resources/open-source/conda-artboard.svg" width=25%> 
@@ -68,7 +68,7 @@ August 28, 2021
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-# Conda Environments
+# Environments
 - Environments allow us to isolate and manage dependencies
   + Environments can have different versions of key modules
   + ... or different versions of Python
@@ -79,12 +79,11 @@ conda create --name 507b --clone 507
 ```
 <!-- #endregion -->
 
-
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Conda Environments
 - To get started, in your terminal application, `conda init`.
 - Make sure `conda` is in your path.
-- `venv` is an alternative 
+- `venv` is an alternative. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -97,10 +96,10 @@ conda create --name 507b --clone 507
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # Managing dependencies
- - Python modules can be managed with conda
+ - Python modules (libraries) can be managed with `conda`. 
  - `conda install`, `conda update` 
- - "Channels" (e.g. conda-forge) are locations where conda will look for modules
- - `pip` is the primary alternative
+ - "Channels" (e.g. conda-forge) are locations where conda will look for modules.
+ - `pip` is the primary alternative. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -110,7 +109,7 @@ conda create --name 507b --clone 507
   - Spyder is a GUI based IDE for Python. 
   - Pairs a text editor with an IPython console for interactive use.  
   - Offers linting, autocomplete, and other useful tools. 
-  - Good place to edit and develop python scripts `.py`.
+  - Spyder is a good place to edit and develop python scripts `.py`.
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -177,11 +176,22 @@ conda create --name 507b --clone 507
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Suggestions
   - Use Spyder while focused on code.
-  - Use conda as your primary package manager.
+  - Use VS code or another text editor when focused on 
+    markdown cells. 
+  - Use Jupyter to view and explore (and possibly develop). 
+  - You will be required to turn in `.py` source code for notebooks. 
+<!-- #endregion -->
+
+# More suggestions
+  - Use `conda` as your primary package manager.
   - Create an enviornment specific to this course ...
   - ... and clone to backup before new installs.
   - Take notes on the steps you take to solve a probelm in case 
     you need to do it again (or help a peer). 
   - Or keep a begining to end setup in a shell script. 
+<!-- #endregion -->
 
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
+# Takeaway 
+  - 
 <!-- #endregion -->

@@ -1,10 +1,8 @@
 ---
 jupyter:
-  author: James Henderson, PhD
-  date: August 9, 2021
   jupytext:
     cell_metadata_json: true
-    notebook_metadata_filter: rise,author,date
+    notebook_metadata_filter: rise
     text_representation:
       extension: .md
       format_name: markdown
@@ -15,24 +13,28 @@ jupyter:
     language: python
     name: python3
   rise:
+    autolaunch: true
     enable_chalkboard: true
-    header: <a href="#/1/1"> <h3> Stats 507 - Title </a>
+    header: <a href="#slide-0-0"> <h3> Stats 507 - Title </a>
     progress: true
     scroll: true
     theme: solarized
     transition: convex
-    autolaunch: true
 ---
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Title
 *Stats 507, Fall 2021*
 
-Author
+Author  
 Date
+<!-- #endregion -->
+
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
+  # Slide title
+  - Bullet
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
 print("Hello World!")
 ```
-

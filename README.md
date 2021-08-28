@@ -14,3 +14,8 @@ The folder [nb](./nb) collects notebooks from the course, including lecture slid
 Files related to problem sets, including example solutions can be found
 in the [ps](./ps) folder.
 
+### Binder
+
+These are files to allow you to view notebooks in this repo through 
+[Binder].  You can ignore these.
+

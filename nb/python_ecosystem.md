@@ -1,7 +1,5 @@
 ---
 jupyter:
-  author: James Henderson, PhD
-  date: August 9, 2021
   jupytext:
     cell_metadata_json: true
     notebook_metadata_filter: rise,author,date,markdown
@@ -18,11 +16,12 @@ jupyter:
     extensions: footnotes
   rise:
     enable_chalkboard: true
-    header: <a href="/#0"> <h3> Stats 507 - The Python Ecosystem </a>
+    header: <a href="#/0-0 "> <h3> Stats 507 - The Python Ecosystem </a>
     progress: true
     scroll: true
     theme: solarized
     transition: convex
+    autolaunch: true
 ---
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -30,25 +29,42 @@ jupyter:
 *Stats 507, Fall 2021*
 
 James Henderson, PhD  
-August 24, 2021
+August 28, 2021
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Python 
-<center> <img src="./img/python.png" width=10%> </center>
+<center> 
+  <img src="https://www.python.org/static/img/python-logo@2x.png" width=50%> 
+</center>
+
+- Python is one of the most popular computing langauges. 
+- It is used by both web developers and data scientists. 
+- Python as a language is often characterized by its: readability, 
+  simplicity, and explicitness. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Anaconda
- <center> <img src="./img/anaconda_org_logo.svg" width=50%> </center>
+ <center> 
+   <img src="https://assets-cdn.anaconda.com/assets/resources/open-source/conda-artboard.svg" width=25%> 
+  </center>
  
  - [Anaconda](https://www.anaconda.com/products/individual) is a popular
    python distrubution that comes with:
    + a package and environment manager `conda` 
    + many preinstalled modules including Numpy, Scipy, 
      Jupyter, and Pandas.  
- - Anacaonda Navigator provides instances of Jupyter Notebooks, Spyder,
-   and other tools. 
+<!-- #endregion -->
+
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
+# Anaconda
+ <center> 
+   <img src="https://assets-cdn.anaconda.com/assets/resources/open-source/conda-artboard.svg" width=25%> 
+  </center> 
+
+  - Anacaonda Navigator provides instances of Jupyter Notebooks, Spyder,
+    and other tools. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -56,8 +72,13 @@ August 24, 2021
 - Environments allow us to isolate and manage dependencies
   + Environments can have different versions of key modules
   + ... or different versions of Python
-  + Update dependencies in a new environment for testing code. 
+  + Clone your environment to backup before updating dependencies.  
+
+```
+conda create --name 507b --clone 507 
+```
 <!-- #endregion -->
+
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Conda Environments
@@ -69,7 +90,7 @@ August 24, 2021
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # Managing environments
  - list `conda env list`
- - create `conda create -n <env> python3.8` 
+ - create `conda create -n <env> python3.9` 
  - activate `conda activate <env>`
  - deactivate `conda deactivate`
 <!-- #endregion -->
@@ -84,7 +105,7 @@ August 24, 2021
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Spyder
- <center> <img src="./img/spyder_logo.png" width=10%> </center>
+ <center> <img src="https://www.spyder-ide.org/static/images/spyder_logo.png?h=f4aab2c7" width=20%> </center>
 
   - Spyder is a GUI based IDE for Python. 
   - Pairs a text editor with an IPython console for interactive use.  
@@ -94,7 +115,7 @@ August 24, 2021
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Jupyter 
- <center> <img src="./img/jupyter_logo.png" width=10%> </center>
+ <center> <img src="https://jupyter.org/assets/nav_logo.svg" width=25%> </center>
 
  - [Jupyter](https://jupyter.org) is an open-source project
  - Provides software and services for interactive computing
@@ -107,6 +128,7 @@ August 24, 2021
    share (and develop) data science. 
  - Jupyter notebooks are browser-based and can be run from a local server or
    through a number of web-based services. 
+ - Support for many languages, but most popular with Python. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -115,13 +137,14 @@ August 24, 2021
 - Most useful when working on a remote Linux server
 - Be sure you are using the version of python from your (conda) environment
    + ... and not the built-in version used by the OS. 
-- Consider using IPython, the basis of Jupyter python kernel. 
+- Consider using IPython, the basis of the Jupyter python kernel. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Command Line Text Editors
   - To edit scripts on remote servers, use a text editor.
   - Options: `vim`, `emacs`, `nano`, `atom`. 
+  - (I use emacs.)
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -141,5 +164,24 @@ August 24, 2021
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-# 
+# Requirements
+  - For most problem sets, you will be asked to submit:
+     + a Jupyter notebook (`.ipynb`)
+     + one ore more Python scripts (`.py`).
+  - Occassionaly, may be asked to submit as `html` or `md`.
+  - The [jupytext][1] library will be helpful here.
+
+  [1]: https://jupytext.readthedocs.io/en/latest/index.html
+<!-- #endregion -->
+
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
+# Suggestions
+  - Use Spyder while focused on code.
+  - Use conda as your primary package manager.
+  - Create an enviornment specific to this course ...
+  - ... and clone to backup before new installs.
+  - Take notes on the steps you take to solve a probelm in case 
+    you need to do it again (or help a peer). 
+  - Or keep a begining to end setup in a shell script. 
+
 <!-- #endregion -->

@@ -5,6 +5,9 @@
 This is a github repository which I will used to share code
 and notebooks with students in Stats 507.
 
+The primary page for this course, including static versions of slides, is available at
+[jbhender.github.io/Stats507/F21](jbhender.github.io/Stats507/F21).
+
 ### Notebooks
 
 The folder [nb](./nb) collects notebooks from the course, including lecture slides.

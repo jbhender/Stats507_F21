@@ -6,10 +6,10 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: '1.2'
-      jupytext_version: 1.5.2
+      format_version: '1.3'
+      jupytext_version: 1.11.4
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
   markdown:
@@ -17,7 +17,7 @@ jupyter:
   rise:
     autolaunch: true
     enable_chalkboard: true
-    header: <a href="#slide-0-0 "> <h3> Stats 507 - The Python Ecosystem </a>
+    header: <a href="#slide-0-0"> <h3> Stats 507 - The Python Ecosystem </a>
     progress: true
     scroll: true
     theme: solarized
@@ -44,6 +44,14 @@ August 31, 2021
   simplicity, and explicitness. 
 <!-- #endregion -->
 
+<!-- #region {"slideshow": {"slide_type": "subslide"}} -->
+# Python 
+- Python is an interpreted (as opposed to a compiled) language.
+- Python is sometimes considered a "glue" language owing to its
+  versatality. 
+- Don't use the Python distributed with your OS.  
+<!-- #endregion -->
+
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Anaconda
  <center> 
@@ -51,10 +59,10 @@ August 31, 2021
   </center>
  
  - [Anaconda](https://www.anaconda.com/products/individual) is a popular
-   python distrubution that comes with:
+   Python distrubution that comes with:
    + a package and environment manager `conda` 
-   + many preinstalled modules including Numpy, Scipy, 
-     Jupyter, and Pandas.  
+   + many preinstalled modules including:  Pandas, Numpy, Scipy, 
+     IPython, and Jupyter.
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -63,15 +71,15 @@ August 31, 2021
    <img src="https://assets-cdn.anaconda.com/assets/resources/open-source/conda-artboard.svg" width=25%> 
   </center> 
 
-  - Anacaonda Navigator provides instances of Jupyter Notebooks, Spyder,
-    and other tools. 
+  - Anacaonda Navigator provides graphical shortcuts to open 
+    instances of Jupyter Notebooks, Spyder, and other tools. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Environments
 - Environments allow us to isolate and manage dependencies
   + Environments can have different versions of key modules
-  + ... or different versions of Python
+  + ... or different versions of Python.  
   + Clone your environment to backup before updating dependencies.  
 
 ```
@@ -103,20 +111,39 @@ conda create --name 507b --clone 507
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
+# IPython 
+  <center> 
+   <img src="https://ipython.org/_static/IPy_header.png" width=25%> 
+ </center> 
+
+- [IPython](https://ipython.org/) is an "interactive" Python interpreter. 
+- IPython also provides the standard Python kernel for Jupyter notebooks. 
+<!-- #endregion -->
+
+<!-- #region {"slideshow": {"slide_type": "subslide"}} -->
+# IPython 
+ > \[IPython\] has become one of the most important tools in the modern
+    Python data stack ... It encouarages an __execute-explore__ workflow instead of
+ > the typical __edit-compile-run__ workflow of many other programming langauges. 
+ > 
+ > --<cite> Wes McKinney </cite>
+<!-- #endregion -->
+
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Spyder
  <center> <img src="https://www.spyder-ide.org/static/images/spyder_logo.png?h=f4aab2c7" width=20%> </center>
 
   - Spyder is a GUI based IDE for Python. 
   - Pairs a text editor with an IPython console for interactive use.  
   - Offers linting, autocomplete, and other useful tools. 
-  - Spyder is a good place to edit and develop python scripts `.py`.
+  - Spyder is a good place to edit and develop python scripts (`.py`).
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Jupyter 
  <center> <img src="https://jupyter.org/assets/nav_logo.svg" width=25%> </center>
 
- - [Jupyter](https://jupyter.org) is an open-source project
+ - [Jupyter](https://jupyter.org) is an open-source project. 
  - Provides software and services for interactive computing
  - Spun off from IPython in [2014](https://en.wikipedia.org/wiki/Project_Jupyter)
 <!-- #endregion -->
@@ -132,11 +159,11 @@ conda create --name 507b --clone 507
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Console
-- You can also use an interactive python interpreter at the command line.
-- Most useful when working on a remote Linux server
-- Be sure you are using the version of python from your (conda) environment
+- You can use an interactive Python interpreter at the command line.
+- Most useful when working on a remote Linux server. 
+- Be sure you are using the version of Python from your (conda) environment
    + ... and not the built-in version used by the OS. 
-- Consider using IPython, the basis of the Jupyter python kernel. 
+- Consider using IPython. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -150,9 +177,13 @@ conda create --name 507b --clone 507
 # Command Line Text Editors
   - When learning a new text editor start with:
     - How to quit/exit, e.g. emacs `cntrl+x cntrl+c`.
-    - How to save edits, e.g. emacs `cntrl+x cntrl+c`. 
-    - Find a cheatsheet and keep it handy. 
+    - How to save edits, e.g. emacs `cntrl+x cntrl+s`. 
+    - Find a [cheatsheet][1] and keep it handy. 
     - Learn a bit at a time, then let muscle-memory take over. 
+    - Supplement course materials with [tutorials][2]. 
+
+ [1]: https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf
+ [2]: https://www.gnu.org/software/emacs/tour/
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -167,7 +198,7 @@ conda create --name 507b --clone 507
   - For most problem sets, you will be asked to submit:
      + a Jupyter notebook (`.ipynb`)
      + one ore more Python scripts (`.py`).
-  - Occassionaly, may be asked to submit as `html` or `md`.
+  - Occassionaly, may be asked to submit as `.html` or `.md`.
   - The [jupytext][1] library will be helpful here.
 
   [1]: https://jupytext.readthedocs.io/en/latest/index.html
@@ -182,6 +213,7 @@ conda create --name 507b --clone 507
   - You will be required to turn in `.py` source code for notebooks. 
 <!-- #endregion -->
 
+<!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # More suggestions
   - Use `conda` as your primary package manager.
   - Create an enviornment specific to this course ...
@@ -192,6 +224,8 @@ conda create --name 507b --clone 507
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-# Takeaway 
-  - 
+# Takeaways 
+  - There are many options for editing Python code and
+    interacting with a Python interpreter.
+  - Start simple, experiment, and use what works for you. 
 <!-- #endregion -->

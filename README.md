@@ -11,6 +11,10 @@ The primary page for this course, including static versions of slides, is availa
 ### Notebooks
 
 The folder [nb](./nb) collects notebooks from the course, including lecture slides.
+Lecture slides are included both in the markdown `.md` format I authored them in and
+an associated `.ipynb` format viewable without [jupytext][jupy] enabled.
+
+[jupy]: https://jupytext.readthedocs.io/en/latest/index.html
 
 ### Problem Sets
 

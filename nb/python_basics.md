@@ -34,7 +34,7 @@ September 2, 2021
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Overview
-  - <a href="#/slide-2 -0"> Semantics </a>
+  - <a href="#/slide-2-0"> Semantics </a>
   - <a href="#/slide-5-0"> (Strong) scalar types </a>
   - <a href="#/slide-12-0"> Indentation</a>
   - <a href="#/slide-13-0"> Functions </a>
@@ -170,7 +170,7 @@ b1 and b2
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Ternary expressions
-  - Python supports *ternery* (three-part) expressions in boolean operations.
+  - Python supports *ternary* (three-part) expressions in boolean operations.
   - Will reappear elswehere, e.g. conditional execution. 
 <!-- #endregion -->
 
@@ -296,10 +296,8 @@ print(round(3.141592653589793, ndigits = 1))
 ```python slideshow={"slide_type": "code"}
 print(round(3.141592653589793, ndigits=2))
 print(round(3.141592653589793, 3))
-try:
-  round(digits = 2, 3.141592653589793)
-except:
-  print("SyntaxError: positional argument follows keyword argument")
+# error
+# round(digits = 2, 3.141592653589793)
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->

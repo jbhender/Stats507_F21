@@ -140,7 +140,8 @@ print(isinstance(x, int))
 # Numeric Types
  - Python's integer type `int` can hold arbitrarily large integers.
  - The `float` type is a double-precision (64-bit) floating point number.
- - Do math with (arithmetic) binary operators: `+`, `-`, `*`, `/`, `//`, `%`, `**`. 
+ - Do math with (arithmetic) binary operators: 
+   `+`, `-`, `*`, `/`, `//`, `%`, `**`. 
  - Floating point arithmetic is approximate.  
 <!-- #endregion -->
 
@@ -175,8 +176,8 @@ b1 and b2
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-print((eps1 > z) and (z < eps2))
-eps1 < z < eps2
+print((eps1 > z) and (z > eps2))
+eps2 < z < eps1
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -218,9 +219,9 @@ Markdown(f'''
 
 ```python slideshow={"slide_type": "code"}
 try:
-  5 * 'phi' 
+    5 + 'phi' 
 except: 
-  print('Error')
+    print('Error')
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -242,7 +243,8 @@ print(n * phi)
  - <p class='fragment'>
    ... unlike many other languages, e.g. R, C++, which use braces `{}`.
    </p>
- - <p class='fragment'> In Python, indentation is functional, not just good style. 
+ - <p class='fragment'> In Python, indentation is functional, 
+    not just good style. 
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -255,9 +257,11 @@ print(n * phi)
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # Indentation 
- - Limit difficulties by following the convention of indenting with **4 spaces**. 
+ - Limit difficulties by following the convention of indenting with 
+   **4 spaces**. 
  - <p class='fragment'>
-    Avoid tabs, `\t`,  but use the tab key when your editor is enabled to translate. 
+    Avoid tabs, `\t`,  but use the tab key when your editor is enabled
+    to translate. 
   </p>
 <!-- #endregion -->
 
@@ -277,7 +281,7 @@ print(k)
 # Functions
 - Recognize function calls by `()` after the function name. 
 - Functions take 0 or more *arguments*.
-- Some arguments are required, other have *default values* and 
+- Some arguments are required, others have *default values* and 
   can be omitted. 
 <!-- #endregion -->
 
@@ -361,9 +365,11 @@ def s(x, y = 0):
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Python is Object-Oriented
  - Everything in Python is an object. 
- - Objects are instances of a class with internal data and (usually) associated methods.
+ - Objects are instances of a class with internal data and (usually)
+   associated methods.
  - <p class='fragment'> 
-    Methods are functions that belong to objects and have access to associated data. 
+    Methods are functions that belong to objects and have access to
+    associated data. 
    </p>
 <!-- #endregion -->
 

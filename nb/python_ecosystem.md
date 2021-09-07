@@ -89,7 +89,7 @@ conda create --name 507b --clone 507
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Conda Environments
-- To get started, in your terminal application, `conda init`.
+- To get started, in your terminal application, `conda init [shell]`.
 - Make sure `conda` is in your path.
 - `venv` is an alternative. 
 <!-- #endregion -->
@@ -97,7 +97,7 @@ conda create --name 507b --clone 507
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 # Managing environments
  - list `conda env list`
- - create `conda create -n <env> python3.9` 
+ - create `conda create -n <env> python=3.9` 
  - activate `conda activate <env>`
  - deactivate `conda deactivate`
 <!-- #endregion -->

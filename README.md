@@ -17,8 +17,8 @@ an associated `.ipynb` format viewable without [jupytext][jupy] enabled.
 For the "tables" notebook, I've also included a version of the document
 as a python script. This was created using the command:
 `jupytext --to py:light tables.ipynb`.  Note that these files have
-extra metadata, e.g `# + [markdown]` than yours might, as this metadata is here
-to enable me to show these as slides. 
+extra metadata, e.g `# + [markdown]`, relative to what yours might.
+This metadata is here to enable me to show these as slides. 
 
 [jupy]: https://jupytext.readthedocs.io/en/latest/index.html
 

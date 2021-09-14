@@ -10,9 +10,10 @@ The primary page for this course, including static versions of slides, is availa
 
 ### Notebooks
 
-The folder [nb](./nb) collects notebooks from the course, including lecture slides.
-Lecture slides are included both in the markdown `.md` format I authored them in and
-an associated `.ipynb` format viewable without [jupytext][jupy] enabled.
+The folder [nb](./nb) collects notebooks from the course, including lecture
+slides. Lecture slides are included both in the markdown `.md` format I 
+authored them in and an associated `.ipynb` format viewable without 
+[jupytext][jupy] enabled.
 
 For the "tables" notebook, I've also included a version of the document
 as a python script. This was created using the command:
@@ -26,6 +27,13 @@ This metadata is here to enable me to show these as slides.
 
 Files related to problem sets, including example solutions can be found
 in the [ps](./ps) folder.
+
+### Demonstrations
+
+Demonstrations can be found in the [demo](./demo/) folder. Currently these are:
+  
+  + [jupy_demo.py](./demo/jupy_demo.py)
+  + [numpy_comp.py](./demo/numpy_comp.py).
 
 ### Binder
 

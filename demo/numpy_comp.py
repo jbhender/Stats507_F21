@@ -52,7 +52,7 @@ def mult_zip(a, b):
     """
     out = [i * j for i, j in zip(a, b)]
     if isinstance(a, np.ndarray):
-        return(out)
+        return(np.asarray(out))
     else:
         return(a.__class__(out))
 
@@ -73,10 +73,9 @@ def mult_enum(a, b):
     """
     out = [j * b[i] for i, j in enumerate(a)]
     if isinstance(a, np.ndarray):
-        return(out)
+        return(np.asarray(out))
     else:
         return(a.__class__(out))
-    return(a.__class__())
 
 
 # a numpy implementation: ----------------------------------------------------
@@ -94,7 +93,7 @@ def mult_np(a, b):
     The element-wise product, `a * b`, with class the same as `a`.
 
     """
-    out = np.asarray(a) * np.asarray(b)
+    out = np.multiply(a, b)
     if isinstance(a, np.ndarray):
         return(out)
     else:
@@ -112,7 +111,7 @@ c1 = mult_zip(a, b)
 c2 = mult_enum(a, b)
 c3 = mult_np(a, b)
 
-assert np.all(c0 == c1 == c2 == c3)
+assert np.all(c0 == c1) and np.all(c0 == c2) and np.all(c0 == c3)
 
 # test with list input
 a = list(a)

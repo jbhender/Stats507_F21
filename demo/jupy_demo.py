@@ -19,14 +19,14 @@
 # ## Jupytext Demo
 # **James Henderson, PhD**  
 # *September 9, 2021*
-# 
+#
 # ## About
 # This is a demonstration of using [JupyText][jt] based on the `string_df.py`
 # script used in the [Tables in Notebooks][tn] slides. 
 #
 # Jupytext allows Markdown cells to be written as comments to be written
 # as comments in a plain text Python script. There are some advantages of this:
-# 
+#
 # 1. Plain text mixing Markdown and Python code is easier for a human to read
 # than the underlying json representation of a notebook file (.ipynb). 
 #
@@ -35,7 +35,7 @@
 #
 # 3. Allow you to develop in an IDE like Spyder, then quickly convert to a 
 # notebook by addding additional comments intended to become Markdown cells. 
-# 
+#
 # [jt]: https://jupytext.readthedocs.io/en/latest/
 # [tn]: https://github.com/jbhender/Stats507_F21/blob/main/nb/tables.ipynb
 
@@ -47,7 +47,7 @@
 # [tn]: https://github.com/jbhender/Stats507_F21/blob/main/nb/tables.ipynb
 # The code cell below shows the header of the original file. 
 
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Create a small pandas DataFrame for examples.

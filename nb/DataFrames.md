@@ -34,11 +34,11 @@ September 21 & 23, 2021
 ## Overview
 - [DataFrame Operations](#/slide-2-0)
 - [Index Objects](#/slide-3-0)
-- [Transformations](#/slide-6-0)
-- [Hierarchical Indices](#/slide-7-0)
-- [Merging](#/slide-9-0)
-- [Pivoting](#/slide-10-0)
-- [Takewaways](#/slide-11-0)
+- [Transformations](#/slide-4-0)
+- [Hierarchical Indices](#/slide-6-0)
+- [Merging](#/slide-7-0)
+- [Pivoting](#/slide-8-0)
+- [Takeaways](#/slide-14-0)
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->

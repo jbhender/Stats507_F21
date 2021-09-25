@@ -116,6 +116,7 @@ from timeit import Timer
 from collections import defaultdict
 from IPython.core.display import display, HTML
 from scipy.stats import norm, binom, beta
+from warnings import warn
 # 79: -------------------------------------------------------------------------
 
 # ## Question 1
@@ -200,7 +201,7 @@ def fib_for(n, a=0, b=1):
     n : int
         The desired Fibonacci number $F_n$. 
     a, b : int, optional.
-        Values to initalize the sequence $F_0 = a$, $F_1 = b$. 
+        Values to initialize the sequence $F_0 = a$, $F_1 = b$. 
 
     Returns
     -------
@@ -237,7 +238,7 @@ def fib_whl(n, a=0, b=1):
     n : int
         The desired Fibonacci number $F_n$.
     a, b : int, optional.
-        Values to initalize the sequence $F_0 = a$, $F_1 = b$.
+        Values to initialize the sequence $F_0 = a$, $F_1 = b$.
 
     Returns
     -------
@@ -292,7 +293,7 @@ def fib_rnd(n):
     n : int
         The desired Fibonacci number $F_n$, must be less than 1478.
     a, b : int, optional.
-        Values to initalize the sequence $F_0 = a$, $F_1 = b$.
+        Values to initialize the sequence $F_0 = a$, $F_1 = b$.
 
     Returns
     -------
@@ -300,16 +301,14 @@ def fib_rnd(n):
     """
     if n < 250:
         return(
-            #round(((1 + 5 ** 0.5) / 2) ** n / (5 ** 0.5))
-            
-            np.round(1 + 5 **)
-            )
+            round(((1 + 5 ** 0.5) / 2) ** n / (5 ** 0.5))
+        )
     elif n < 1478:
         return(
             round(
                 np.exp(n * np.log((1 + np.sqrt(5)) / 2) - 0.5 * np.log(5))
-                )
             )
+        )
     else:
         raise ValueError('Values of n > 1477 lead to an infinite float.')
 
@@ -325,7 +324,7 @@ assert fib_log == fib_rnd(i)
 
 # ### e) `fib_flr()`
 # This is another direction computation method, by adding 0.5 to the 
-# approxomation used in `fib_rnd()` we can replace rounding with integer
+# approximation used in `fib_rnd()` we can replace rounding with integer
 # truncation. Here, I use `int()` to truncate the approximations but you
 # could also use `floor()`. 
 #
@@ -348,7 +347,7 @@ def fib_flr(n):
     n : int
         The desired Fibonacci number $F_n$, must be less than 1478.
     a, b : int, optional.
-        Values to initalize the sequence $F_0 = a$, $F_1 = b$.
+        Values to initialize the sequence $F_0 = a$, $F_1 = b$.
 
     Returns
     -------
@@ -451,9 +450,9 @@ def pascal(n):
 
 # ### b) Displaying Pascal's triangle
 # Without fractional spacing, it isn't possible to construct a triangle
-# with perfect symmetry.  In the example solution, I've shown  a compact
-# representation with minimal spacing to allow for staggering as well as
-# a solution with uniform spacing. 
+# with perfect symmetry.  In the example solution, I've chosen a compact
+# representation with minimal spacing to allow for staggering. A solution
+# using uniform spacing would also be suitable.  
 
 def pascal_display(n, compact=True):
     """
@@ -472,7 +471,7 @@ def pascal_display(n, compact=True):
  
     Returns
     -------
-    A string wihch, when printed, displays the first n rows. 
+    A string which, when printed, displays the first n rows. 
     """
     # base "cell" size of of final two rows
     
@@ -537,7 +536,7 @@ print(pascal_display(10, compact=False))
 # ## Question 3
 # In this question you wrote two functions: one for returning a point and 
 # interval estimate for the mean as a formatted string and a second doing
-# the same for a proportionn using various methods. 
+# the same for a proportion using various methods. 
 
 # ### a) Confidence interval for the mean. 
 
@@ -561,7 +560,7 @@ def ci_mean(
         If `None` a dictionary with entries `mean`, `level`, `lwr`, and
         `upr` whose values give the point estimate, confidence level (as a %),
         lower and upper confidence bounds, respectively. If a string, it's the
-        esult of calling the `.format_map()` method using this dictionary.
+        result of calling the `.format_map()` method using this dictionary.
         The default is "{mean:.2f} [{level:.0f}%: ({lwr:.2f}, {upr:.2f})]".
 
     Returns
@@ -573,7 +572,7 @@ def ci_mean(
     """
     # check input
     try:
-        x = np.asarray(x)  # or np.array() as instrccted.
+        x = np.asarray(x)  # or np.array() as instructed.
     except TypeError:
         print("Could not convert x to type ndarray.")
 
@@ -635,7 +634,7 @@ def ci_prop(
     -------
     A string with a (100 * level)% confidence interval in the form
     "mean [(100 * level)% CI: (lwr, upr)]" or a dictionary containing the
-    keyworkds shown in the string.
+    keywords shown in the string.
 
     """
     # check input type

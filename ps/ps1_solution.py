@@ -20,7 +20,7 @@
 # **Stats 507, Fall 2021**  
 # *James Henderson, PhD*  
 # *September 22, 2021*
-#
+# *(Updated September 28, 2021*)
 
 # ## Contents
 # + [Question 0](#Question-0)
@@ -38,7 +38,7 @@
 #
 # > Question 0 is about Markdown. 
 #
-# The next question is about the **Fibonnaci sequence**, 
+# The next question is about the **Fibonacci sequence**, 
 # $F_n = F_{n-2} + F_{n-1}$. In part **a** we will define a Python 
 # function `fib_rec()`. 
 #
@@ -76,7 +76,7 @@
 #
 # > Question 0 is about Markdown. 
 #
-# The next question is about the **Fibonnaci sequence**, 
+# The next question is about the **Fibonacci sequence**, 
 # $F_n = F_{n-2} + F_{n-1}$. In part **a** we will define a Python 
 # function `fib_rec()`. 
 #
@@ -148,7 +148,7 @@ def test_fib(fib):
 
 # ### a) `fib_rec()`
 # Sequential computation using a recursive strategy. Note the re-use of the
-# starting values to achieve a linear-time complexity.  We recongize this by
+# starting values to achieve a linear-time complexity.  We recognize this by
 # noting that `fib_rec(n)` calls `fib_rec()` once for each recursion or a total
 # of `n` times.  If you call `fib_rec()` twice on each call you end up with
 # exponential complexity scaling like $2^n$. 
@@ -165,7 +165,7 @@ def fib_rec(n, a=0, b=1):
     n : int
         The desired Fibonacci number $F_n$.
     a, b : int, optional.
-        Values to initalize the sequence $F_0 = a$, $F_1 = b$.
+        Values to initialize the sequence $F_0 = a$, $F_1 = b$.
 
     Returns
     -------
@@ -265,7 +265,7 @@ assert test_fib(fib_whl)
 # direct computation method, namely, we find $F_n$ by rounding 
 # $\phi^n / sqrt(5)$. 
 #
-# Unlike Python's built-in integers, the NumPy ints used 
+# Unlike Python's built-in integers, the NumPy integers used 
 # here cannot be arbitrarily large. A computation resulting in an integer 
 # (or float) larger than can be accommodated by the number of bits used to
 # represent it typically results in an *overflow* error. In the function
@@ -302,13 +302,13 @@ def fib_rnd(n):
     if n < 250:
         return(
             round(((1 + 5 ** 0.5) / 2) ** n / (5 ** 0.5))
-        )
+            )
     elif n < 1478:
         return(
             round(
                 np.exp(n * np.log((1 + np.sqrt(5)) / 2) - 0.5 * np.log(5))
+                )
             )
-        )
     else:
         raise ValueError('Values of n > 1477 lead to an infinite float.')
 
@@ -450,9 +450,9 @@ def pascal(n):
 
 # ### b) Displaying Pascal's triangle
 # Without fractional spacing, it isn't possible to construct a triangle
-# with perfect symmetry.  In the example solution, I've chosen a compact
-# representation with minimal spacing to allow for staggering. A solution
-# using uniform spacing would also be suitable.  
+# with perfect symmetry.  In the example solution, I've shown  a compact
+# representation with minimal spacing to allow for staggering as well as
+# a solution with uniform spacing. 
 
 def pascal_display(n, compact=True):
     """
@@ -657,7 +657,7 @@ def ci_prop(
 
     # compute estimate
     if method == 'AC':
-        z = norm.ppf(1 - (1 - level / 2))
+        z = norm.ppf(1 - (1 - level) / 2)
         n = (n + z ** 2)
         est = (np.sum(x) + z ** 2 / 2) / n
     else:

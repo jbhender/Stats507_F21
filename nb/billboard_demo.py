@@ -72,7 +72,7 @@ df_long.head()
 # weeks at number 1
 wks_at1 = (df_long
            .query('position == 1')
-           .groupby(by=['artist', 'track'], observed=False, as_index=False)
+           .groupby(by=['artist', 'track'], observed=True, as_index=False)
            .size()
            .query('size > 0')
            .sort_values('size', ascending=False)

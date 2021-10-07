@@ -83,26 +83,26 @@ $$
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-## Central Limit Theorem
- - Assume our data are:
-   + *independent and identically distributed* (iid),
-   + from a distribution with finite variance.
- - Then, the rate of convergence of a sample average to its population 
+## Central Limit Theorem 
+- Assume our data are:
+  + *independent and identically distributed* (iid),
+  + from a distribution with finite variance.
+- Then, the rate of convergence of a sample average to its population 
    counterpart is characterized by the *central limit theorem* (CLT):
 $$
- \sqrt{n}(\bar{\theta}_n - \theta) \to_{d} N(0,\sigma^2)
+ \sqrt{n}(\bar{\theta}_n - \theta) \to_{d} N(0,\sigma^2).
 $$
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
-## Central Limit Theorem
- - On the previous slide, $\sigma^2$ is the variance of
-   the underlying distribution from which X is drawn.
+## Central Limit Theorem 
+- On the previous slide, $\sigma^2$ is the variance of
+   the underlying distribution from which $X$ is drawn.
 
- - Estimate the variance of a Monte Carlo estimate to construct confidence
+- Estimate the variance of a Monte Carlo estimate to construct confidence
    intervals around your estimates.
 
- - Choose the number of Monte Carlo replicates to attain the desired precision.
+- Choose the number of Monte Carlo replicates to attain the desired precision.
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
@@ -115,7 +115,7 @@ lwr, upr = pi_hat - z * se, pi_hat + z * se
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-## Confidence Level
+## Confidence Level  
 - We chose $z = \Phi^{-1}(0.975)$ on the previous slide to attain a 95% 
   *confidence level*. 
 - This means that we expect the population parameter ($\pi$) to be in our
@@ -128,7 +128,7 @@ lwr < np.pi < upr # Expect this to be True ~95% of the time with z = 1.96
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-## Desired Precision
+## Desired Precision  
 - Suppose we need to estimate $\pi$ to within $\pm 0.001$ with 99% confidence.
 - To determine the number of Monte Carlo replicates we should use to attain
   the desired margin of error, solve the inequality, 
@@ -141,7 +141,7 @@ $$
 
 ```python slideshow={"slide_type": "code"}
 z = norm.ppf(.995)
-n_min =  (1000 * z * 4 * np.sqrt(np.pi / 4 * (1 - np.pi / 4))) ** 2
+n_min = (1000 * z * 4 * np.sqrt(np.pi / 4 * (1 - np.pi / 4))) ** 2
 n_min
 ```
 

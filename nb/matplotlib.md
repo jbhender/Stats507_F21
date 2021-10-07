@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.4
+      jupytext_version: 1.13.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -138,6 +138,7 @@ _ = plt.scatter(x, z, color='red')
 _ = ax0.hist(x)
 _ = ax1.hist(y, color='darkgreen', alpha=0.5)
 _ = ax1.hist(z, color='red', alpha=0.5)
+
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -174,7 +175,7 @@ for i, lab in enumerate(['count', 'y', 'z']):
 
 ```python slideshow={"slide_type": "code"}
 fig2, ax2 = plt.subplots(nrows=1, ncols=1)
-plt.scatter(x, y, color='darkgreen', alpha=0.5, label='y')
+plt.scatter(x, y, color='darkgreen', alpha=0.5, label='Anxiety Score')
 plt.scatter(x, z, color='red', alpha=0.5, label='z')
 _, _ = ax2.set_xlabel('x (IV)'), ax2.set_ylabel('y or z (DVs)')
 _ = ax2.legend(loc='upper left') 
@@ -292,7 +293,7 @@ for i, lab in enumerate(['count', 'y', 'z']):
 
 ```python slideshow={"slide_type": "code"}
 ax0 = df.plot.hist(color=['darkred', 'darkgreen', 'blue'], alpha=0.5)
-_ = ax0.set_xlabel('x')
+_ = ax0.set_xlabel('(x, y, z) value')
 type(ax0)
 ```
 

@@ -58,6 +58,7 @@ tup = 'pi', ['py'], 'pie'
 print(tup)
 print(type(tup))
 print(tup.__class__)
+type(tup[1])
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -164,13 +165,16 @@ print((a, b))
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-num, (word1, *_) = answer
+num, (word1 , *_) = answer
 print(num)
-print(word1)
+#print(word1)
+type(_)
+_.append(1)
 ```
 
 ```python slideshow={"slide_type": "fragment"}
 print(_)
+answer
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -286,12 +290,15 @@ print(prime[0:-1][::-1])
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-a = [x for x in my_list if isinstance(x, tuple)]
+a = [x 
+     for x in my_list
+     if isinstance(x, tuple)]
 b = []
 for x in my_list:
     if isinstance(x, tuple):
         b.append(x)
 a == b
+a
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -311,6 +318,12 @@ d = x[x[1]:y[2]:y[1]]
 e = [i
      for i in x
      if 0 < i < 4 and i % 2 == 1] 
+
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -333,6 +346,7 @@ for tup in my_list:
             flat2.append(x)
 
 flat1 == flat2 
+flat1
 ```
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 # Dicts
@@ -361,7 +375,7 @@ flat1 == flat2
 ```python slideshow={"slide_type": "code"}
 new_dict = {} # new_dict = dict()
 res1 = {"mean": 4.2, "se": 0.21}
-res2 = dict(mean=4.2, se=0.21)
+res2 = dict(mean=4.2, se=0.22)
 res1 == res2  # same keys and values
 ```
 
@@ -383,9 +397,9 @@ res1 == res2  # same keys and values
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-print(res["mean"])
-res["lwr"] = res["mean"] - 1.96 * res["se"]
-print(res.get("upr"))
+print(res1["mean"])
+res1["lwr"] = res1["mean"] - 1.96 * res1["se"]
+print(res1.get("upr"))
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -395,7 +409,7 @@ print(res.get("upr"))
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-print(res.get("upr", "Not computed."))
+print(res1.get("upr", "Not computed."))
 x = {"a": 1, "b": 2, "c": 3}
 for i in tuple("abcd"):    
     x.update({i: x.get(i, 0) + 1})

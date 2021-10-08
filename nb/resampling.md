@@ -32,11 +32,11 @@ October 5 & 7, 2021
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 ## Overview
-  - [Resampling](#/slide-3-0)
-  - The [Bootstrap](#/slide-4-0)
-  - Bootstrap [Example](#/slide-5-0)
-  - Permutation Tests (TBD)
-  - [Takeaways](#/slide-6-0)
+  - [Resampling](#/slide-2-0)
+  - The [Bootstrap](#/slide-3-0)
+  - Bootstrap [Example](#/slide-6-0)
+  - [Permutation Tests](#/slide-9-0)
+  - [Takeaways](#/slide-10-0)
  
 <!-- #endregion -->
 
@@ -136,7 +136,6 @@ from os.path import exists
 
 ```python slideshow={"slide_type": "code"}
 params = {'legend.fontsize': 'x-large',
-          'figure.figsize': (15, 5),
          'axes.labelsize': 'x-large',
          'axes.titlesize':'x-large',
          'xtick.labelsize':'x-large',
@@ -392,7 +391,9 @@ for dose in [0.5, 1, 2]:
     se = np.sqrt(v_a / n_a + v_b / n_b)
     # degrees of freedom using Welch-Satterthwhaite approximation
     df = (v_a / n_a + v_b / n_b) ** 2 
-    df = df / (v_a ** 2 / n_a ** 2 / (n_a - 1) + v_b ** 2 / n_b ** 2 / (n_b - 1))
+    df = df / (
+      v_a ** 2 / n_a ** 2 / (n_a - 1) + v_b ** 2 / n_b ** 2 / (n_b - 1) 
+    )
     tt = t.ppf(.975, df=df)
     lwr, upr = d - tt * se, d + tt * se
     d, lwr, upr = np.exp(d), np.exp(lwr), np.exp(upr)
@@ -429,7 +430,8 @@ for dose in [0.5, 1, 2]:
         random_state=rng
     )
     lwr, upr = res.confidence_interval
-    ci = '{0:4.2f} ({1:4.2f}, {2:4.2f})'.format(np.mean(a) / np.mean(b), lwr, upr)
+    ci = '{0:4.2f} ({1:4.2f}, {2:4.2f})'.format(
+      np.mean(a) / np.mean(b), lwr, upr)
     erb_scipy.update({dose: ci})
 erb['Ratio of Means (95% CI-Scipy)'] = pd.Series(erb_scipy)
 erb.iloc[:, [3, 5]]
@@ -447,7 +449,7 @@ erb.iloc[:, [3, 5]]
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 ## Permutation testing
-  - If we have $n$ total samples from 2 groups of size $k, \ell$, then there are 
+  - If we have $n$ total samples from 2 groups of size $k, \ell$, then there 
     are $m_c = {n \choose k}$ possible group assignments. 
   - Note that there are actually $m_p = n!$ permutations, but they are not all 
     unique in terms of group assignment.  
@@ -578,7 +580,7 @@ erb['Permutation p-value'] = (tg_data
 erb.iloc[:, 3:8]
 ```
 
-<!-- #region {"slideshow": {"slide_type": "subslide"}} -->
+<!-- #region {"slideshow": {"slide_type": "slide"}} -->
 ## Takeaways - Bootstrap
  - The bootstrap is a widely used method for constructing confidence interval
    estimates by resampling data with replacement. 

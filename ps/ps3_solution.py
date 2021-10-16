@@ -17,7 +17,7 @@
 #     extensions: footnotes
 # ---
 
-# ## Problem Set 2, Solution
+# ## Problem Set 3, Solution
 # **Stats 507, Fall 2021**  
 # *James Henderson, PhD*  
 # *October 5, 2021*
@@ -86,10 +86,10 @@
 # Details on using these weights for variance estimation are provided in 
 # the [technical documents][recstd] accompanying the data files.  
 #
-# From these documents we learn that the varaince of the point estimate
+# From these documents we learn that the variance of the point estimate
 # $\hat{\theta}$ above can be estimated using the $R$ replicate weights
 # $w_i(1), \cdots w_i(R)$, by each set of replicate weights to create 
-# replicate estimetes $\hat{\theta}_r = \hat{\theta}(w(r))$:
+# replicate estimates $\hat{\theta}_r = \hat{\theta}(w(r))$:
 #
 # $$
 # \hat{V}(\hat{\theta}) = \frac{1}{R(1 - \epsilon)^2} 
@@ -176,7 +176,7 @@ else:
 if exists(recs09_brr):
     brr09 = pd.read_feather(recs09_brr)
 else:
-    # eplicate Weights
+    # replicate weights
     brr09 = pd.read_csv(brr09_file)
     brr09.drop(columns='NWEIGHT', inplace=True)
     brr09.rename(columns=wts09, inplace=True)
@@ -192,7 +192,7 @@ else:
     # 2009 RECS Data
     recs15 = pd.read_csv(recs15_file, low_memory=False)
     brr15 = recs15[wts15]
-    brr15.rename(columns=wts_15, inplace=True)
+    brr15.rename(columns=wts15, inplace=True)
     recs15 = recs15[core_cols]
     recs15.rename(columns=core_cols_map, inplace=True)
     
@@ -203,7 +203,7 @@ else:
 
 # ### part b) Convert weights to a longer format
 # In the second part of this question, we convert the weights
-# to a longer format to faciliate use of `.groupby()` operations
+# to a longer format to facilitate use of `.groupby()` operations
 # for computing the replicate estimates. It'd probably be a good idea
 # to do this and part "a" together, and save the replicate weights in
 # this longer format.
@@ -367,7 +367,8 @@ tab1 = tab1.replace('<table', '<table width="100%"')
 display(HTML(tab1))
 
 # ### b) differences between 2015 and 2009
-# In this next part we compute differences in cooling and heating degree days between 2015 and 2009. 
+# In this next part we compute differences in cooling and heating degree days
+# between 2015 and 2009. 
 
 # +
 # construct differences and standard errors
@@ -429,7 +430,8 @@ display(HTML(tab2))
 
 # ## Question 3
 #
-# In this question we create visualizations of the estimates from the previous question. 
+# In this question we create visualizations of the estimates from the
+# previous question. 
 
 params = {'legend.fontsize': 'x-large',
          'axes.labelsize': 'x-large',
@@ -494,7 +496,9 @@ for j, v in enumerate(dd65):
         linewidth=3
     )
 _ = ax2.legend(loc='right')
-_ = ax2.set_xlabel('Difference in Heating and Cooling Degree Days, 2015 less 2009')
+_ = ax2.set_xlabel(
+    'Difference in Heating and Cooling Degree Days, 2015 less 2009'
+    )
 _ = ax2.set_ylabel('Census Region')
 
 # ---

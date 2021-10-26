@@ -35,6 +35,28 @@ Demonstrations can be found in the [demo](./demo/) folder. Currently these are:
   + [jupy_demo.py](./demo/jupy_demo.py)
   + [numpy_comp.py](./demo/numpy_comp.py).
 
+#### shell
+
+Within demo the [shell](./demo/shell) directory contains full length demos
+and short examples illustrating syntax for useful shell programming patterns.
+
+Here are short descriptions:
+
+ - `dups.txt`, `nhanes_files.txt` example text files for use with the
+    shell examples.
+ - `ex_while_read.sh` illustrates the `while read` pattern for looping.
+ - `ex_check_dup_lines.sh` illustrates checking for duplicate lines in
+    a file using `sort`, `uniq`, `wc` and an `if` statement. The `if`
+    statement syntax here is for bash and may error in other shells,
+    e.g. zsh.
+ - `ex_variable_expansion.sh` demonstrates the difference between single
+    and double quotes in terms of the latter allowing variable expansion.
+ - `recs_data.sh` downloads the 2009 and 2015 RECS data and associated codebooks.
+ - `cutnames.sh` is an executable program for extracting columns from a csv file
+    by name. 
+ - `nhanes_demo.sh` downloads several cohorts of NHANES data, converts to
+    csv, selects columns, and appends into a single dataset.
+
 ### Binder
 
 These are files to allow you to view notebooks in this repo through 

@@ -28,6 +28,10 @@ This metadata is here to enable me to show these as slides.
 Files related to problem sets, including example solutions can be found
 in the [ps](./ps) folder.
 
+Within the problem set (ps) folder, is a sub-folder "exemplars" containing
+student solutions that stood out as particulary good. Thank you to the students
+who agreed to have their solutions posted.
+
 ### Demonstrations
 
 Demonstrations can be found in the [demo](./demo/) folder. Currently these are:

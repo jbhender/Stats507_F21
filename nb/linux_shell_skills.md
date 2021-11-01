@@ -27,7 +27,7 @@ jupyter:
 *Stats 507, Fall 2021*
 
 James Henderson, PhD  
-October 26 & 28, 2021
+October 26 & 28 & November 2, 2021
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -89,7 +89,7 @@ October 26 & 28, 2021
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 ## AFS 
- = You need to have an AFS home directory to connect to university Linux 
+ - You need to have an AFS home directory to connect to university Linux 
    servers. 
  - If you do not have one, you can set it up by visiting
    http://mfile.umich.edu/ and selecting the 'AFS Self-Provisioning Tool'. 
@@ -101,7 +101,7 @@ October 26 & 28, 2021
  - You can connect to a UM Linux server using `ssh`.
  - Replace `unique_name` with your UM unique name (the part of your 
    UM email address preceding `@umich.edu`).
- - User name can be omitted if your username for you computer is the same
+ - Username can be omitted if your username for you computer is the same
    or by aliasing the connection.  
  - Use `hostname` to see name of host you were connected to. 
 
@@ -497,7 +497,7 @@ echo 'hello stats 507!' | tr '[a-z]' '[A-Z]' | tr ' ' \n
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-## Takeaways 1/2
+## Takeaways 2/2
 - Working with data streams through pipes and redirection is
   a primary attraction of the Linux shell.
 - Use `scp`, `sftp`, or `wget` to get data to and from remote hosts. 

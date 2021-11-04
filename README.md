@@ -37,7 +37,8 @@ who agreed to have their solutions posted.
 Demonstrations can be found in the [demo](./demo/) folder. Currently these are:
   
   + [jupy_demo.py](./demo/jupy_demo.py)
-  + [numpy_comp.py](./demo/numpy_comp.py).
+  + [numpy_comp.py](./demo/numpy_comp.py)
+  + [isolet_demo.py](./demo/isolet_demo.py)..
 
 #### shell
 

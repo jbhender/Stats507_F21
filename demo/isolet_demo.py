@@ -1,7 +1,7 @@
 # # Isolet Demo
 # **Stats 507, Fall 2021**  
 # *James Henderson, PhD*  
-# *November 4 & 9, 2021*
+# *November 4-11, 2021*
 
 
 # ## About
@@ -25,6 +25,7 @@ import statsmodels.formula.api as smf
 from collections import defaultdict
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 import sklearn as skl
 from scipy.stats import logistic
 from os.path import exists
@@ -44,7 +45,10 @@ pylab.rcParams.update(params)
 # and the $5^{th}$ for testing. See here for the source: 
 # https://archive.ics.uci.edu/ml/machine-learning-databases/isolet/
 
+# +
 # data: ---------------------------------------------------------------------
+
+# training
 iso_train_file = 'isolet_train.feather'
 if exists(iso_train_file):
     df_train = pd.read_feather(iso_train_file)
@@ -57,6 +61,19 @@ else:
     df_train.columns = cols
     # save 
     df_train.to_feather(iso_train_file)
+
+# -
+
+# testing
+iso_test_file = 'isolet_test.feather'
+if exists(iso_test_file):
+    df_test = pd.read_readfeather(iso_test_file)
+else: 
+    iso_test = 'isolet5.data'
+    df_test = pd.read_csv(iso_test, delimiter=',', header=None)
+    # add column names
+    cols = ['x' + str(i) for i in range(617)] + ['letter']
+    df_test.columns = cols
 
 # ## Subjects 
 # From the information file, we know that each person in the study was 
@@ -447,8 +464,6 @@ lr_cv3 = LogisticRegressionCV(
 
 cv_res3 = lr_cv3.fit(x_all, y_train)
 
-cv_res3.
-
 # minimal entropy from ridge
 print(-1 * np.mean(cv_res3.scores_[1], axis=0))
 cv_res3.Cs_
@@ -491,8 +506,6 @@ lr_cv5.scores_[1].shape
 
 entropy = (-1 * np.mean(lr_cv5.scores_[1], axis=0))
 entropy.T
-
-
 
 # ## Random Forests
 #
@@ -593,11 +606,11 @@ for fold, (train, val) in enumerate(folds):
 
         # train model
         rf = RandomForestClassifier(
-            n_estimators=500, # number of trees
+            n_estimators=500,  # number of trees
             criterion='entropy',
             max_depth=md,      # maximum number of splits
             max_features='sqrt',
-            max_samples=0.5,  # smaller yields more regularization
+            max_samples=0.5,   # smaller yields more regularization
             n_jobs=2
         )
         res_rf = rf.fit(x_in, y_in)
@@ -639,3 +652,156 @@ metrics_rf['max_depth'] = np.where(
     0
 )
 metrics_rf.groupby('max_depth').mean()
+
+# Notice that while the accuracy is improved relative
+# to our best elastic-net model, the entropy is not. 
+
+# ## Gradient Boosted Trees
+# Gradient boosted decision trees is one of the best off-the-shelf
+# model classes for rectangular data. They can, however, take more
+# care in training than the other models we've discussed.  Generally,
+# we need to tune the number of boosting rounds (number of trees),
+# the learning rate, tree depth, and the number of variables used to
+# build each tree. 
+#
+# The learning rate and number of boosting rounds in particular 
+# interact directly in the sense that we generally need more rounds of
+# boosting when using a smaller learning rate. 
+
+# fit an initial model to estimate an initial learning rate: ------------------
+gb0 = GradientBoostingClassifier(
+    loss='deviance',
+    n_estimators=500, # number of trees
+    learning_rate=.1,  
+    subsample=1,
+    max_depth=16, 
+    max_features='sqrt',
+    verbose=1
+)
+gb0.fit(x_train, y_train)
+
+y_hat = gb0.staged_predict_proba(x_train)
+print(type(y_hat))
+yh = np.asarray(list(y_hat))
+yh.shape
+
+# demonstration of asessing performance at each round: ------------------------
+y_hat = np.asarray(list(gb1.staged_predict_proba(x_v)))[:, :, 1]
+y_hat.shape
+np.mean(
+    np.where(y_v == 0, -1 * np.log(1 - y_hat), -1 * np.log(y_hat)),
+    axis=1
+)
+
+# +
+# cross validation for tuning GBT hyperparameters: ----------------------------
+gb1 = GradientBoostingClassifier(
+    loss='deviance',
+    n_estimators=100, # number of trees
+    learning_rate=.1,  
+    subsample=1,
+    max_depth=16, 
+    max_features='sqrt',
+    verbose=0
+)
+
+metrics = defaultdict(list)
+for fold, (train, val) in enumerate(folds):
+    
+    # training data
+    x_in = x_train[train, :]
+    y_in = y_train[train]
+    
+    # validation data
+    x_v = x_train[val, :]
+    y_v = y_train[val]
+
+    # fit model
+    gb1.fit(x_in, y_in)
+    y_hat = np.asarray(list(gb1.staged_predict_proba(x_v)))[:, :, 1]
+    
+    # validation loss
+    metrics['ce_val'].append(np.mean(
+        np.where(y_v == 0, -1 * np.log(1 - y_hat), -1 * np.log(y_hat)),
+        axis=1
+    ))
+    
+    # accuracy
+    metrics['accuracy'].append(
+        np.mean(np.where(y_hat > 0.5, y_v, 1 - y_v), axis=1)
+    )
+
+    print(fold)
+    
+# -
+
+# validation cross-entropy vs round: ------------------------------------------
+loss = np.asarray(metrics['ce_val'])
+cv_gb_loss = np.mean(loss, axis=0)
+fig, ax5 = plt.subplots(nrows=1)
+plt.plot(range(100), cv_gb_loss, label='mean', color='black', linewidth=2)
+for fold in range(4):
+    plt.plot(
+        range(100),
+        loss[fold, :],
+        label='fold ' + str(fold),
+        alpha=0.5
+    )
+_ = ax5.legend(loc='upper right')
+
+(np.min(cv_gb_loss), np.min(loss, axis=1))
+
+# at what stage is the validation loss minimized?: ---------------------------
+(
+    (cv_gb_loss <= np.min(cv_gb_loss)).nonzero(), # average 
+    (loss.T <= np.min(loss, axis=1)).nonzero()    # each fold
+)
+#loss.T[50:55, 1]
+
+n_rounds = (cv_gb_loss <= np.min(cv_gb_loss)).nonzero()[0][0]
+n_rounds
+
+# update parametrs and then refit model to full train data: ------------------
+gb1.set_params(**{'n_estimators': n_rounds})
+print((gb1.n_estimators_, gb1.n_estimators))
+gb1.fit(x_train, y_train)
+print((gb1.n_estimators_, gb1.n_estimators))
+
+# ## Evaluation on Test Data 
+# The final step in our demonstration is to evaluate the peformance of our
+# selected model on the held out test data. 
+
+# +
+# subject identification: ----------------------------------------------------
+df_test['a'] = df_test['letter'] == 1
+df_test['z'] = df_test['letter'] == 26
+n, p = df_test.shape
+id = np.cumsum(
+    df_test['a'].iloc[1:, ].values * 
+    df_test['z'].iloc[0:(n - 1), ].values
+)
+
+# label vowels: --------------------------------------------------------------
+df_test['vowel'] = 0
+df_test['vowel'].where(
+    np.in1d(df_test['letter'], [1, 5, 9, 15, 21]),
+    1,
+    inplace=True
+)
+
+# extract data to numpy: ------------------------------------------------------
+x_test = df_test.loc[:, 'x0':'x616'].to_numpy()
+y_test = df_test.loc[:, 'vowel'].to_numpy()
+# -
+
+# evalaute test performance: --------------------------------------------------
+yh_test = gb1.predict_proba(x_test)[:, 1]
+ce_test = np.mean(
+    np.where(
+        y_test == 0, 
+        -1 * np.log(1 - yh_test),
+        -1 * np.log(yh_test)
+    )
+)
+ac_test = np.mean(np.where(yh_test > 0.5, y_test, 1 - y_test))
+np.round((ce_test, ac_test), 3)

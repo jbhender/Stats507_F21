@@ -170,7 +170,6 @@ u, vh = svd_all[0][:, :5], svd_all[2][:5, :]
 
 u = np.dot(x_all, svd_all[2].T) / svd_all[1]
 np.allclose(svd_all[0][:, :617], u)
-np.allclose(np.std(x_in, axis=0), 1)
 
 # cross validation for determining the number of components: ------------------
 metrics = defaultdict(list)
@@ -686,12 +685,12 @@ yh = np.asarray(list(y_hat))
 yh.shape
 
 # demonstration of asessing performance at each round: ------------------------
-y_hat = np.asarray(list(gb1.staged_predict_proba(x_v)))[:, :, 1]
+y_hat = np.asarray(list(gb0.staged_predict_proba(x_v)))[:, :, 1]
 y_hat.shape
 np.mean(
     np.where(y_v == 0, -1 * np.log(1 - y_hat), -1 * np.log(y_hat)),
     axis=1
-)
+)[:100]
 
 # +
 # cross validation for tuning GBT hyperparameters: ----------------------------

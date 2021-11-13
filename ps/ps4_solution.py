@@ -96,9 +96,9 @@ df['ohx'] = pd.Categorical(df['ohx'])
 df['under_20'] = df['age'] < 20
 
 college = ('College graduate or above', 'Some college or AA degree')
-df['college'] = np.logical_or(
+df['college'] = np.logical_and(
     df['education'].apply(lambda x: x in college).replace({np.nan: False}),
-    df['under_20']
+    ~df['under_20']
 )
 df['college'] = df['college'].replace(
     {True: 'Some College/College Graduate',
@@ -115,6 +115,8 @@ df['under_20'] = (
 cols = ['id', 'gender', 'age', 'under_20', 'college', 'exam_status', 'ohx']
 df = df[cols]
 # -
+
+df.groupby(['under_20', 'college'], as_index=False).size()
 
 # ## part c) Drop missing already accounted for
 # In this part we drop those whom were interviewed only, as these

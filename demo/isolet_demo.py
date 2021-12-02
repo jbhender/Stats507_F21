@@ -10,9 +10,7 @@ Author: James Henderson
 """
 
 # modules: --------------------------------------------------------------------
-from __future__ import absolute_import, division, print_function, \
-    unicode_literals
-
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.keras import layers
@@ -23,6 +21,10 @@ df = pd.read_csv(df_file, header=None)
 
 target = df.pop(617)
 target -= 1
+
+# normalize 
+#train_min, train_max = df.min(), df.max()
+#df = df.transform(lambda x: (x - np.min(x))/(np.max(x) - np.min(x)))
 
 # prepare data for keras: -----------------------------------------------------
 dataset = tf.data.Dataset.from_tensor_slices((df.values, target.values))
@@ -36,9 +38,11 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(26, activation='softmax')
 ])
 
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
 
 # fit the model: --------------------------------------------------------------
 model.fit(train_dataset, epochs=15)
@@ -56,12 +60,12 @@ t0, t1 = target[0:n0], target[n0:len(df)]
 train = tf.data.Dataset.from_tensor_slices((df1.values, t1.values))
 valid = tf.data.Dataset.from_tensor_slices((df0.values, t0.values))
 
-train = train.shuffle(len(df1)).batch(1)
-valid = valid.batch(1)
+train = train.shuffle(len(df1)).batch(26)
+valid = valid.batch(26)
 
 # model 1, 
 m1 = tf.keras.models.Sequential()
-m1.add(layers.Dense(128, activation='relu'), input_shape=(df1.shape[1],))
+m1.add(layers.Dense(128, activation='relu', input_shape=(df1.shape[1],)))
 m1.add(layers.Dense(26, activation='softmax'))
 m1.compile(
     optimizer='adam',
@@ -69,7 +73,7 @@ m1.compile(
     metrics=['accuracy']
 )
 
-m1.fit(train, epochs=15)
+h1 = m1.fit(train, epochs=15, validation_data=valid)
 yv = m1.predict(valid)
 m1_loss, m1_accuracy = m1.evaluate(valid)
 print('Model 1 Loss {}, Model 1 Accuracy {}'.format(m1_loss, m1_accuracy))
@@ -86,11 +90,10 @@ m2.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m2.fit(train, epochs=15)
+h2 = m2.fit(train, epochs=15, validation_data=valid)
 
 m2_loss, m2_accuracy = m2.evaluate(valid, verbose=1)
 print('Model 2 Loss {}, Model 2 Accuracy {}'.format(m2_loss, m2_accuracy))
-
 
 # model 3, add another layer: -------------------------------------------------
 m3 = tf.keras.models.Sequential([
@@ -105,7 +108,7 @@ m3.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m3.fit(train, epochs=15)
+h3 = m3.fit(train, epochs=15, validation_data=valid)
 
 m3_loss, m3_accuracy = m3.evaluate(valid, verbose=1)
 print('Model 3 Loss {}, Model 3 Accuracy {}'.format(m3_loss, m3_accuracy))
@@ -121,7 +124,7 @@ m4.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m4.fit(train, epochs=15)
+h4 = m4.fit(train, epochs=15, validation_data=valid)
 
 m4_loss, m4_accuracy = m4.evaluate(valid, verbose=1)
 print('Model 4 Loss {}, Model 4 Accuracy {}'.format(m4_loss, m4_accuracy))
@@ -139,7 +142,7 @@ m5.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m5.fit(train, epochs=15)
+h5 = m5.fit(train, epochs=15, validation_data=valid)
 
 m5_loss, m5_accuracy = m5.evaluate(valid, verbose=1)
 print('Model 5 Loss {}, Model 5 Accuracy {}'.format(m5_loss, m5_accuracy))
@@ -156,7 +159,7 @@ m6.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m6.fit(train, epochs=15)
+h6 = m6.fit(train, epochs=15, validation_data=valid)
 
 m6_loss, m6_accuracy = m6.evaluate(valid, verbose=1)
 print('Model 6 Loss {}, Model 6 Accuracy {}'.format(m6_loss, m6_accuracy))
@@ -177,7 +180,7 @@ m7.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-m7.fit(train, epochs=15)
+h7 = m7.fit(train, epochs=15, validation_data=valid)
 
 m7_loss, m7_accuracy = m7.evaluate(valid, verbose=1)
 print('Model 7 Loss {}, Model 7 Accuracy {}'.format(m7_loss, m7_accuracy))
@@ -200,6 +203,20 @@ results = results.sort_values('accuracy')
 
 m_best = models[results.iloc[len(results) - 1, 0]]
 
+# early stopping: -------------------------------------------------------------
+best_acc = []
+for h in (h1, h2, h3, h4, h5, h6, h7):
+    best_acc.append(np.max(h.history['val_accuracy']))
+
+early_stop = tf.keras.callbacks.EarlyStopping(patience=2)
+m4b = tf.keras.models.clone_model(m4)
+m4b.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+h4b = m4b.fit(train, epochs=15, validation_data=valid, callbacks=[early_stop])
+
 # testing data: ---------------------------------------------------------------
 test_file = "./isolet5.data"
 df_test = pd.read_csv(test_file, header=None)
@@ -210,6 +227,6 @@ test_target -= 1
 test = tf.data.Dataset.from_tensor_slices(
     (df_test.values, test_target.values)
 )
-test = test.batch(1)
+test = test.batch(26)
 
 m_best.evaluate(test)

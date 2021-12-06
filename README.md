@@ -28,12 +28,39 @@ This metadata is here to enable me to show these as slides.
 Files related to problem sets, including example solutions can be found
 in the [ps](./ps) folder.
 
+Within the problem set (ps) folder, is a sub-folder "exemplars" containing
+student solutions that stood out as particulary good. Thank you to the students
+who agreed to have their solutions posted.
+
 ### Demonstrations
 
 Demonstrations can be found in the [demo](./demo/) folder. Currently these are:
   
   + [jupy_demo.py](./demo/jupy_demo.py)
-  + [numpy_comp.py](./demo/numpy_comp.py).
+  + [numpy_comp.py](./demo/numpy_comp.py)
+  + [isolet_demo.py](./demo/isolet_demo.py)..
+
+#### shell
+
+Within demo the [shell](./demo/shell) directory contains full length demos
+and short examples illustrating syntax for useful shell programming patterns.
+
+Here are short descriptions:
+
+ - `dups.txt`, `nhanes_files.txt` example text files for use with the
+    shell examples.
+ - `ex_while_read.sh` illustrates the `while read` pattern for looping.
+ - `ex_check_dup_lines.sh` illustrates checking for duplicate lines in
+    a file using `sort`, `uniq`, `wc` and an `if` statement. The `if`
+    statement syntax here is for bash and may error in other shells,
+    e.g. zsh.
+ - `ex_variable_expansion.sh` demonstrates the difference between single
+    and double quotes in terms of the latter allowing variable expansion.
+ - `recs_data.sh` downloads the 2009 and 2015 RECS data and associated codebooks.
+ - `cutnames.sh` is an executable program for extracting columns from a csv file
+    by name. 
+ - `nhanes_demo.sh` downloads several cohorts of NHANES data, converts to
+    csv, selects columns, and appends into a single dataset.
 
 ### Binder
 

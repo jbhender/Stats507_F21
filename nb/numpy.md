@@ -142,7 +142,7 @@ np.linspace([0, 0], [3, 6], 3)
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-print((z_x.dtype, z_y.dtype))
+print((z_x.dtype, z_y.dtype) 
 z_f = z_x.astype(np.float64)
 [(z_y[:, 1] + z_f).dtype, (z_f + z_y[:, 1]).dtype]
 ```
@@ -185,7 +185,8 @@ if z_f.dtype != np.float64:
 ```python slideshow={"slide_type": "code"}
 x = np.arange(9).reshape(3, 3)
 y = np.array([-1, 0, 1])
-x[:, 0] * y, x[1, :] > y, x * y
+print([x, y])
+x[:, 0] * y,  x[1, :] > y, x * y
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->

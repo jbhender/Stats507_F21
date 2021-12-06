@@ -1,0 +1,6 @@
+.DS_store
+*.feather
+*.csv
+*.out
+*.log
+

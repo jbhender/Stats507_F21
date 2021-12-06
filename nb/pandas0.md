@@ -36,7 +36,7 @@ September 16, 2021
 - [I/O](#/slide-5-0)
 - [The `series` class](#/slide-6-0)
 - [The `DataFrame` class](#/slide-7-0)
-- [Selcting rows and columns](#/slide-9-0)
+- [Selecting rows and columns](#/slide-9-0)
 <!-- #endregion -->
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -90,11 +90,13 @@ pd.__version__
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
+import numpy as np
+import pandas as pd
 nyc_air = pd.Series(
     {'LGA': 'East Elmhurst', 'JFK': 'Jamaica', 'EWR': 'Newark'})
 nyc_air.index.name = 'airport'
 nyc_air.name = 'city'
-nyc_air
+nyc_air 
 ```
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
@@ -102,7 +104,7 @@ nyc_air
 - The pandas `DataFrame` class is the primary way of representing 
   heterogeneous, rectangular data in Python.  
 - A `DataFrame` can be thought of as an ordered dictionary of `Series` 
-  (columns) with a shared index (rown ames). 
+  (columns) with a shared index (row names). 
 - *Rectangular* means all the columns (Series) have the same length.  
 - We will use DataFrames heavily in this class going forward. 
 <!-- #endregion -->
@@ -128,7 +130,7 @@ df
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 ## Select Columns ... 
 - by name using `[]` with a string (caution) or list of strings,
-- by positon using the `.iloc[:, 0:2]` indexer,
+- by position using the `.iloc[:, 0:2]` indexer,
 - by name using the `.loc[:, ["col1", "col2"]` indexer.
 - Columns with valid Python names an be accessed as attributes, e.g. `df.column`
   (but don't). 
@@ -144,15 +146,15 @@ df_city = df[['city']]
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
 ## Select Columns ... 
 - by name using `[]` with a string (caution) or list of strings,
-- by positon using the `.iloc[:, 0:2]` indexer,
+- by position using the `.iloc[:, 0:2]` indexer,
 - by name using the `.loc[:, ["col1", "col2"]` indexer.
 - Columns with valid Python names an be accessed as attributes, e.g. `df.column`
   (but don't). 
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-df.loc[["JFK", "LGA"], "city"] = "JFK"  # always returns a view
-df
+df.loc[["JFK", "LGA"], "city"] = "NYC"  # always returns a view
+df.city
 ```
 
 <!-- #region {"slideshow": {"slide_type": "subslide"}} -->
@@ -186,7 +188,7 @@ dat.loc[0:5:2, :]  # takes a slice object b/c uses RangeIndex()
 
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 ## Filtering
-- Observations satisifying some condition can be selected through
+- Observations satisfying some condition can be selected through
   Boolean indexing or (better) using the `.query()` method. 
 - The primary argument to `.query()` is a string containing a Boolean 
   expression involving column names. 
@@ -194,7 +196,7 @@ dat.loc[0:5:2, :]  # takes a slice object b/c uses RangeIndex()
 
 ```python slideshow={"slide_type": "code"}
 b = dat[dat['b'] > 0]
-q = dat.query('b > 0')
+q = dat.query('b > 0 and d < 8')
 [b, q]
 ```
 
@@ -203,10 +205,10 @@ q = dat.query('b > 0')
 - Pandas `DataFrames` are used to represent tidy, rectangular data. 
 - Think of `DataFrames` as a collection of `Series` of the same length and
   sharing an index. 
-- Pay attention to whehter you are: 
+- Pay attention to whether you are: 
   + getting a `Series` or a (new) `DataFrame`
   + a view (alias) or a copy.
-- Prefer methods when avialable. 
+- Prefer methods when available. 
 - I recommend keeping a Pandas [cheat sheet][cs] close at hand.
 - More on Pandas and DataFrame methods in the next few lectures. 
 

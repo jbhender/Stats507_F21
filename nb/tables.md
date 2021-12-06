@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.4
+      jupytext_version: 1.13.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -88,7 +88,7 @@ https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1003730
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "code"}
-%run s ring_df.py #constructs a data frame dat
+%run string_df.py #constructs a data frame dat
 print(dat.to_html())
 ```
 

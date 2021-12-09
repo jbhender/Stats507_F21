@@ -1,4 +1,10 @@
-
+# MNIST Demo 
+# Stats507, Fall 2021
+# 
+# Demonstrate the Keras functional API and convolutional networks.
+# 
+# Author: James Henderson
+# Updated: December 8, 2021
 # 79: -------------------------------------------------------------------------
 
 # imports: --------------------------------------------------------------------
